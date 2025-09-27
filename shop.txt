@@ -23,6 +23,21 @@
         black 5px,
         white 5px,
         white 10px
+<head>
+  <style>
+    body {
+      background: repeating-linear-gradient(
+        0deg,
+        white,
+        white 20px,
+        black 20px,
+        black 40px
+      );
+    }
+  </style>
+</head>
+
+
       );
       z-index: 10;
     }
@@ -134,3 +149,4 @@
 
 </body>
 </html>
+
