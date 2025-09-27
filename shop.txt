@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Moj Web Shop</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: white;
+      position: relative;
+    }
+
+    /* Crne pruge u ćoškovima */
+    .corner {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      background: repeating-linear-gradient(
+        45deg,
+        black,
+        black 5px,
+        white 5px,
+        white 10px
+      );
+      z-index: 10;
+    }
+
+    .top-left { top: 0; left: 0; }
+    .top-right { top: 0; right: 0; }
+    .bottom-left { bottom: 0; left: 0; }
+    .bottom-right { bottom: 0; right: 0; }
+
+    /* Grid za slike */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      padding: 50px;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .gallery img {
+      width: 100%;
+      cursor: pointer;
+      border: 2px solid black;
+      transition: transform 0.2s;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    /* Modal za veličine */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 100;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.5);
+    }
+
+    .modal-content {
+      background-color: white;
+      margin: 15% auto;
+      padding: 20px;
+      border: 2px solid black;
+      width: 300px;
+      text-align: center;
+    }
+
+    .close {
+      color: red;
+      float: right;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .sizes {
+      margin-top: 10px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Crne pruge u uglovima -->
+  <div class="corner top-left"></div>
+  <div class="corner top-right"></div>
+  <div class="corner bottom-left"></div>
+  <div class="corner bottom-right"></div>
+
+  <!-- Galerija proizvoda -->
+  <div class="gallery">
+    <img src="https://via.placeholder.com/300x300?text=Proizvod+1" alt="Proizvod 1" onclick="openModal(['S', 'M', 'L'])">
+    <img src="https://via.placeholder.com/300x300?text=Proizvod+2" alt="Proizvod 2" onclick="openModal(['M', 'L', 'XL'])">
+    <img src="https://via.placeholder.com/300x300?text=Proizvod+3" alt="Proizvod 3" onclick="openModal(['XS', 'S', 'M'])">
+    <img src="https://via.placeholder.com/300x300?text=Proizvod+4" alt="Proizvod 4" onclick="openModal(['L', 'XL'])">
+  </div>
+
+  <!-- Modal (popup) -->
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2>Dostupne veličine:</h2>
+      <div class="sizes" id="sizeList"></div>
+    </div>
+  </div>
+
+  <script>
+    function openModal(sizes) {
+      document.getElementById('myModal').style.display = 'block';
+      document.getElementById('sizeList').innerText = sizes.join(', ');
+    }
+
+    function closeModal() {
+      document.getElementById('myModal').style.display = 'none';
+    }
+
+    // Zatvaranje ako se klikne van modala
+    window.onclick = function(event) {
+      const modal = document.getElementById('myModal');
+      if (event.target == modal) {
+        modal.style.display = 'none';
+      }
+    }
+  </script>
+
+</body>
+</html>
